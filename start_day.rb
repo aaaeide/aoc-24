@@ -46,11 +46,11 @@ def save_to_file(dir, data)
   end
 end
 
-year = 2023
+year = 2024
 day = read_args
 token = load_token
-url = "https://adventofcode.com/2023/day/#{day}/input"
-dir = "./data/#{year}/#{day}"
+url = "https://adventofcode.com/#{year}/day/#{day}/input"
+dir = "./data/#{year}/#{day.to_s.rjust(2, '0')}/"
 
 res = make_request(url, token)
 unless res&.code.to_i == 200
@@ -61,3 +61,8 @@ end
 save_to_file(dir, res&.body)
 
 puts "Input data saved to #{filename(dir)}"
+
+FileUtils.mkdir("days/#{year}")
+File.open("days/#{year}/day#{day.to_s.rjust(2, '0')}.rb", "w") do |f|
+  f.write("# frozen_string_literal: true\n")
+end
