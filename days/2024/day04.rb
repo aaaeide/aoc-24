@@ -20,8 +20,8 @@ end
 
 def part1(map)
   map.reduce(0) do |cnt, ((x, y), v)|
-    next unless v == 'X'
-    
+    next cnt unless v == 'X'
+
     cnt + xmas_count(map, x, y)
   end
 end
