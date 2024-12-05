@@ -63,6 +63,13 @@ save_to_file(dir, res&.body)
 puts "Input data saved to #{filename(dir)}"
 
 # FileUtils.mkdir("days/#{year}")
-File.open("days/#{year}/day#{day.to_s.rjust(2, '0')}.rb", "w") do |f|
-  f.write("# frozen_string_literal: true\n")
+File.open("days/#{year}/day#{day.to_s.rjust(2, '0')}.rb", 'w') do |f|
+  f.write(<<~RUBY
+      # frozen_string_literal: true
+
+    def parse_input(lines)
+      File.readlines('data/2024/#{day.to_s.rjust(2, '0')}/data.txt', chomp: true)
+    end
+  RUBY
+  )
 end
