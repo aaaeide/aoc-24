@@ -67,7 +67,7 @@ File.open("days/#{year}/day#{day.to_s.rjust(2, '0')}.rb", 'w') do |f|
   f.write(<<~RUBY
       # frozen_string_literal: true
 
-    def parse_input(lines)
+    def parse_input
       File.readlines('data/2024/#{day.to_s.rjust(2, '0')}/data.txt', chomp: true)
     end
   RUBY
